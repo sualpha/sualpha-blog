@@ -1,14 +1,15 @@
 // index.js
 import DefaultTheme from 'vitepress/theme'
 import Layout from './components/Layout.vue'
-import { SpeedInsights } from "@vercel/speed-insights/vue"
+import { injectSpeedInsights } from '@vercel/speed-insights';
 import './custom.css'
 
 export default {
     extends: DefaultTheme,
     Layout: Layout,
-    SpeedInsights: SpeedInsights,
     enhanceApp({ app }) {
+        injectSpeedInsights();
         app.provide('DEV', process.env.NODE_ENV === 'development')
       }
 }
+
